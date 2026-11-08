@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  -
+    let results = [
+      { name: 'Mount Fuji', country: 'Japan', height_meters: 3776 },
+      { name: 'Mauna Loa', country: 'United States', height_meters: 4169 },
+      { name: 'Mount Vesuvius', country: 'Italy', height_meters: 1281 },
+      { name: 'Mount St. Helens', country: 'United States', height_meters: 2549 }
+    ]

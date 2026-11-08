@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p rows: #{query.rows}, cols: #{query.cols}
+  - rows = Number(query.rows)
+  - cols = Number(query.cols)
+  if !Number.isInteger(rows) || !Number.isInteger(cols)
+    p rows and cols must both be whole numbers
+  else if rows < 2 || rows > 12
+    p rows must be between 2 and 12
+  else if cols < 2 || cols > 12
+    p cols must be between 2 and 12
+  else
+    table#outer
+      - for(let i=0; i<rows; i++) {
+        tr#middle
+          - for(let j=0; j<cols; j++) {
+            td= j - i
+          - }
+      - }
