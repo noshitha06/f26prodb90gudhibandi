@@ -1,7 +1,14 @@
 var Volcano = require('../models/volcano');
 
-exports.volcano_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Volcano list');
+exports.volcano_list = async function(req, res) {
+    try{
+        theVolcanoes = await Volcano.find();
+        res.send(theVolcanoes);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 };
 
 exports.volcano_detail = function(req, res) {
