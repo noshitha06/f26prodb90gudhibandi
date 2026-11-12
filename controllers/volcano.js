@@ -28,3 +28,14 @@ exports.volcano_delete = function(req, res) {
 exports.volcano_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Volcano update PUT ' + req.params.id);
 };
+  
+exports.volcano_view_all_Page = async function(req, res) {
+    try{
+        theVolcanoes = await Volcano.find();
+        res.render('volcanoes', { title: 'Volcano Search Results', results: theVolcanoes });
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};

@@ -26,6 +26,7 @@ var usersRouter = require('./routes/users');
 var resourceRouter = require('./routes/resource');
 
 
+
 var app = express();
 
 // view engine setup
@@ -61,9 +62,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// We can seed the collection if needed on server start
+
 async function recreateDB(){
-  // Delete everything
+ 
   await Volcano.deleteMany();
 
   let instance1 = new Volcano({volcano_name:"St. Helens", volcano_type:"stratovolcano", height_m:2549});
