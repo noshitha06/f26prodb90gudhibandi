@@ -11,8 +11,16 @@ exports.volcano_list = async function(req, res) {
     }
 };
 
-exports.volcano_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Volcano detail: ' + req.params.id);
+
+exports.volcano_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+        result = await Volcano.findById(req.params.id)
+        res.send(result)
+    } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
+    }
 };
 
    
