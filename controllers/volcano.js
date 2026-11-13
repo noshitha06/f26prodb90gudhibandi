@@ -46,8 +46,22 @@ exports.volcano_delete = function(req, res) {
 };
 
 
-exports.volcano_update_put = function(req, res) {
-    res.send('NOT IMPLEMENTED: Volcano update PUT ' + req.params.id);
+
+exports.volcano_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await Volcano.findById(req.params.id)
+        if (req.body.volcano_name) toUpdate.volcano_name = req.body.volcano_name;
+        if (req.body.volcano_type) toUpdate.volcano_type = req.body.volcano_type;
+        if (req.body.height_m) toUpdate.height_m = req.body.height_m;
+
+        let result = await toUpdate.save();
+        console.log("Success " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+    }
 };
   
 exports.volcano_view_all_Page = async function(req, res) {
